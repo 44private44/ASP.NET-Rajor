@@ -1,0 +1,239 @@
+﻿/* --------------------------------------------------------------------------------------------------------------------- */
+/* ------------------------------------- 🧑‍💻👩‍💻👨‍💻 admin page 🧑‍💻👩‍💻👨‍💻  ----------------------------------------------- */
+.admin_content {
+    margin: 0px;
+}
+
+    .admin_content .admin_menus {
+        height: 100vh;
+        background-color: #f88634;
+    }
+
+    .admin_content .navigation_text label {
+        color: #FFFFFF;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .admin_content .main_admin_menus_divs {
+        text-decoration: none;
+    }
+
+        .admin_content .main_admin_menus_divs a button {
+            padding: 8px 25px 8px 20px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+            width: 251px;
+            text-align: left;
+            color: #FFFFFF;
+            background-color: transparent;
+        }
+
+            .admin_content .main_admin_menus_divs a button i {
+                padding-right: 10px;
+            }
+
+            .admin_content .main_admin_menus_divs a button:hover {
+                color: #f88634;
+                background-color: white;
+                box-shadow: 0px 0px 6px 2px #202020;
+            }
+
+    .admin_content .admin_menus_subdiv {
+        padding: 0px 20px;
+    }
+
+    .admin_content .main_admin_menus_divs a button.active {
+        color: #f88634;
+        background-color: white;
+        box-shadow: 0px 0px 6px 2px #202020;
+    }
+
+.admin_logout {
+    text-decoration: none;
+    padding-left: 10px;
+}
+
+    .admin_logout i {
+        color: black;
+    }
+
+        .admin_logout i:hover {
+            color: #f88634;
+        }
+
+.admin_second_content {
+    padding: 0px;
+    margin: 0px !important;
+}
+
+.admin_second_content_header {
+    padding: 20px 130px 15px 50px;
+    box-shadow: 5px 1px 15px 2px gray;
+}
+
+.admin_user_title,
+.mainadmin_search_div,
+.admin_user_table {
+    padding: 5px 130px 5px 50px;
+    margin: 0px;
+}
+
+    .mainadmin_search_div .admin_search {
+        width: 240% !important;
+        padding: 9px 30px 9px 20px;
+    }
+
+    .admin_user_table table {
+        border: 1px solid gray;
+    }
+
+        .admin_user_table table thead {
+            background-color: #d7d7d7;
+        }
+
+            .admin_user_table table thead tr th,
+            .admin_user_table table tbody tr td {
+                padding: 0px !important;
+                color: black !important;
+            }
+
+            .admin_user_table table thead tr th,
+            .admin_user_table table tbody tr td {
+                padding: 17px !important;
+            }
+
+                .admin_user_table table tbody tr td i {
+                    font-size: 18px;
+                    padding-left: 5px;
+                    cursor: pointer;
+                }
+
+                    .admin_user_table table tbody tr td i:hover {
+                        color: #f88634;
+                    }
+
+        .admin_user_table table .status_active {
+            color: green !important;
+        }
+
+        .admin_user_table table .status_inactive {
+            color: red !important;
+        }
+
+    .mainadmin_search_div .inside_div {
+        padding: 0px !important;
+    }
+
+.addnewusermodel {
+    padding: 0px !important;
+}
+
+.newuseradd .modal-content {
+    height: 935px;
+    overflow: scroll;
+}
+
+.newuseradd .modal-dialog {
+    max-width: 1313px;
+}
+
+.newuseradd .matchpassworddiv {
+    display: none;
+}
+
+.pagination_admin_div {
+    padding: 10px 120px;
+}
+
+    .pagination_admin_div .pagination {
+        justify-content: end;
+    }
+
+.addmissionskills {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.45rem 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    background-color: #fff;
+    background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e);
+    background-size: 16px 12px;
+    border: 1px solid #ced4da;
+    -moz-appearance: none;
+    text-align: left;
+    margin-top: 4px;
+    border-radius: 0.25rem;
+}
+
+.addmissiondropdown {
+    width: 48%;
+}
+
+.special_inputpassword_eye input {
+    border-right: none !important;
+}
+
+.password_eye {
+    padding: 0.65rem 0.75rem !important;
+    border-radius: 0px;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+
+    .password_eye i {
+        cursor: pointer;
+    }
+
+.user_status div {
+    padding-left: 5.5em;
+}
+
+    .user_status div input,
+    .story_status div input {
+        border-color: black;
+    }
+
+.story_status div {
+    padding-right: 3.5em;
+}
+
+.right_icon {
+    color: green;
+}
+
+.wrong_icon {
+    color: red;
+}
+
+.admin_user_table .right_icon:hover,
+.admin_user_table .wrong_icon:hover {
+    color: black !important;
+}
+
+.application_tablebody tr td {
+    vertical-align: middle;
+}
+
+    .application_tablebody tr td a {
+        text-decoration: none;
+    }
+
+        .application_tablebody tr td a button {
+            padding: 4px 16px;
+        }
+
+.card_apply_button {
+    text-align: center;
+    border: 2px solid #F88634;
+    border-radius: 30px;
+    padding: 8px 25px;
+    color: #F88634;
+    background-color: transparent;
+}
+
+    .card_apply_button:hover {
+        border-color: black;
+    }

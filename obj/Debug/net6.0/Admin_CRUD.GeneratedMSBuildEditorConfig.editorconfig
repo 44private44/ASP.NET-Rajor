@@ -1,0 +1,88 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Admin_CRUD
+build_property.RootNamespace = Admin_CRUD
+build_property.ProjectDir = D:\important\122\Projects\Admin_CRUD\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\important\122\Projects\Admin_CRUD
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/important/122/Projects/Admin_CRUD/Views/Admin/Admin_Page.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5fUGFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/important/122/Projects/Admin_CRUD/Views/Admin/_AdminLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cX0FkbWluTGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/important/122/Projects/Admin_CRUD/Views/Admin/_BannerAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cX0Jhbm5lckFkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/important/122/Projects/Admin_CRUD/Views/Admin/_CMSAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cX0NNU0FkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/important/122/Projects/Admin_CRUD/Views/Admin/_MissionAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cX01pc3Npb25BZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/important/122/Projects/Admin_CRUD/Views/Admin/_MissionAppAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cX01pc3Npb25BcHBBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/important/122/Projects/Admin_CRUD/Views/Admin/_MissionSkillAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cX01pc3Npb25Ta2lsbEFkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/important/122/Projects/Admin_CRUD/Views/Admin/_MissionThemeAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cX01pc3Npb25UaGVtZUFkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/important/122/Projects/Admin_CRUD/Views/Admin/_StoryAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cX1N0b3J5QWRtaW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/important/122/Projects/Admin_CRUD/Views/Admin/_UserAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cX1VzZXJBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/important/122/Projects/Admin_CRUD/Views/Home/Demo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZW1vLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/important/122/Projects/Admin_CRUD/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/important/122/Projects/Admin_CRUD/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/important/122/Projects/Admin_CRUD/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/important/122/Projects/Admin_CRUD/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/important/122/Projects/Admin_CRUD/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/important/122/Projects/Admin_CRUD/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/important/122/Projects/Admin_CRUD/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-ceo1rs45w9

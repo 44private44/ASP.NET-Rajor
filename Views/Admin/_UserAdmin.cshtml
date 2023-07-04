@@ -1,0 +1,75 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div>
+    <div class="admin_user_title mt-5">
+        <h3>User</h3>
+        <hr>
+    </div>
+    <div class="row d-flex align-items-center mainadmin_search_div">
+        <div class="col-6 inside_div">
+            <div class="input-group">
+                <div class="form-outline">
+                    <input type="search" class="form-control admin_search"
+                           placeholder="Search" id="admin_search" />
+                </div>
+            </div>
+        </div>
+        <div class="col-6 inside_div">
+            <div class="apply_button_card main_div_save text-end">
+                <a href="" data-bs-toggle="modal" data-bs-target="#user_add" id="addnewuseradminadd" class="timesheet_add_button">
+                    <button class="card_apply_button storycanclebtn">
+                        <i class="fa-solid fa-plus"></i> Add
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="admin_user_table mt-4">
+    <table class="table main_user_table">
+        <thead>
+            <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Employee Id </th>
+                <th scope="col">Department</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+   @*     <tbody>
+            @foreach (var userData in Model.Users)
+            {
+                @if (@userData.Flag == 1)
+                {
+                    <tr>
+                        <td>@userData.FirstName</td>
+                        <td>@userData.LastName</td>
+                        <td>@userData.Email</td>
+                        <td>@userData.EmployeeId</td>
+                        <td>@userData.Department</td>
+                        @if (@userData.Status == 1)
+                        {
+                            <td class="status_active">Active</td>
+                        }
+                        else
+                        {
+                            <td class="status_inactive">In-active</td>
+
+                        }
+                        <td>
+                            <i class="fa-regular fa-pen-to-square UserEditAdminButton" data-bs-toggle="modal" data-bs-target="#user_edit" data-userid="@userData.UserId"></i>
+                            <i class="fa-solid fa-trash-can deleteihover UserDeleteAdminButton" data-bs-toggle="modal" data-bs-target="#User_delete" data-userid="@userData.UserId"></i>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>*@
+    </table>
+</div>
+

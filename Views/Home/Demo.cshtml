@@ -1,0 +1,58 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+To achieve the desired functionality of loading partial views without navigating to a different page, you can utilize AJAX and jQuery. Here's how you can modify the code:
+
+Create a new empty <div> element inside the <div class="col-10 mt-3 admin_second_content"> div. Give it an id, such as "partialViewContainer". This will be the container where the partial views will be loaded.
+html
+Copy code
+<div class="col-10 mt-3 admin_second_content">
+    <div class="admin_second_content_header">
+        <!-- Existing code -->
+    </div>
+    <div id="partialViewContainer"></div> <!-- Add this div -->
+</div>
+Create a new JavaScript file, such as "AdminJS.js" and include it in the <head> section of your HTML code (before the closing </head> tag). This file will handle the AJAX requests and loading of the partial views.
+html
+Copy code
+<script src="~/js/AdminJS.js"></script>
+In the "AdminJS.js" file, add the following code:
+javascript
+Copy code
+$(document).ready(function () {
+    // Attach click event handler to menu buttons
+    $('.main_admin_menus_divs button').click(function (e) {
+        e.preventDefault();
+        var url = $(this).parent().attr('href'); // Get the URL from the menu button's parent anchor element
+
+        // Make an AJAX request to the specified URL
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (data) {
+                $('#partialViewContainer').html(data); // Load the partial view into the container
+            },
+            error: function () {
+                // Handle error if necessary
+            }
+        });
+    });
+});
+Now, in your MVC controllers (e.g., "AdminController"), create separate action methods corresponding to each menu item. These action methods should return partial views instead of full views. For example:
+csharp
+Copy code
+public IActionResult UserAdmin()
+{
+    // Logic for UserAdmin action
+    return PartialView("_UserAdminPartial"); // Return the UserAdmin partial view
+}
+Ensure that you have separate partial views for each menu item (e.g., "_UserAdminPartial.cshtml", "_CmsAdminPartial.cshtml", etc.) and that they are located in the appropriate folder (e.g., "Views/Shared").
+
+With these modifications, when a menu button is clicked, an AJAX request is sent to the corresponding action method in the controller. The controller action then returns the respective partial view, which is loaded into the "partialViewContainer" div without refreshing the entire page.
+
+Make sure to update the URLs in the menu buttons to match the correct controller and action names.
+
+Note: Remember to include the necessary scripts and CSS files in your project, such as jQuery, Bootstrap, and SweetAlert, as specified in your original code.
