@@ -10,141 +10,119 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
-
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>@ViewBag.Title</title>
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="~/css/AdminStyle.css" />
-        <script src="https://kit.fontawesome.com/e7b47f6d71.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-    </head>
-    <body>
-        <section class="admin_section">
-            <div class="row admin_content">
-                <div class="col-2 admin_menus pt-5">
-                    <div class="admin_menus_subdiv">
-                        <div class="navigation_text mb-4">
-                            <label>NAVIGATION</label>
-                        </div>
-                        <div class="pb-2">
-                            <div class="main_admin_menus_divs">
-                                <a class="admin-menu-link default-link" href="/Admin/UserAdmin">
-                                    <button class="active">
-                                        <i class="bi bi-person-fill"></i>
-                                        User
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="pb-2">
-                            <div class="main_admin_menus_divs">
-                                <a class="admin-menu-link" href="/Admin/CMSAdmin">
-                                    <button>
-                                        <i class="bi bi-file-earmark-fill"></i>
-                                        CMS Page
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="pb-2">
-                            <div class="main_admin_menus_divs">
-                                <a class="admin-menu-link" href="/Admin/MissionAdmin">
-                                    <button>
-                                        <i class="bi bi-bullseye"></i>
-                                        Mission
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="pb-2">
-                            <div class="main_admin_menus_divs">
-                                <a class="admin-menu-link" href="/Admin/MissionThemeAdmin">
-                                    <button>
-                                        <i class="bi bi-columns-gap"></i>
-                                        Mission Theme
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="pb-2">
-                            <div class="main_admin_menus_divs">
-                                <a class="admin-menu-link" href="/Admin/MissionSkillAdmin">
-                                    <button>
-                                        <i class="bi bi-tools"></i>
-                                        Mission Skills
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="pb-2">
-                            <div class="main_admin_menus_divs">
-                                <a class="admin-menu-link" href="/Admin/MissionAppAdmin">
-                                    <button>
-                                        <i class="bi bi-folder-fill"></i>
-                                        Mission Application
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="pb-2">
-                            <div class="main_admin_menus_divs">
-                                <a class="admin-menu-link" href="/Admin/StoryAdmin">
-                                    <button>
-                                        <i class="bi bi-bookmark-star-fill"></i>
-                                        Story
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="pb-2">
-                            <div class="main_admin_menus_divs">
-                                <a class="admin-menu-link" href="/Admin/BannerAdmin">
-                                    <button>
-                                        <i class="bi bi-menu-button"></i>
-                                        Banner Management
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
+    <section class="admin_section">
+        <div class="row admin_content">
+            <div class="col-2 admin_menus pt-5">
+                <div class="admin_menus_subdiv">
+                    <div class="navigation_text mb-4">
+                        <label>NAVIGATION</label>
                     </div>
-                </div>
-                <div class="col-10 mt-3 admin_second_content">
-                    <div class="admin_second_content_header">
-                        <div class="d-flex justify-content-between align-items-center justify-content-end ">
-                            <div>
-                                <label id="current-time"></label>
-                            </div>
-                            <a class="admin_logout" id="adminLogout">
-                                <i class="fa-solid fa-right-from-bracket" style="cursor:pointer;"></i>
+                    <div class="pb-2">
+                        <div class="main_admin_menus_divs">
+                            <a class="admin-menu-link default-link" href="/Admin/UserAdmin">
+                                <button class="active" data="/Admin/UserAdminTableData">
+                                    <i class="bi bi-person-fill"></i>
+                                    User
+                                </button>
+                            </a>
+                        </div>  
+                    </div>
+                    <div class="pb-2">
+                        <div class="main_admin_menus_divs">
+                            <a class="admin-menu-link" href="/Admin/CMSAdmin">
+                                <button data="">
+                                    <i class="bi bi-file-earmark-fill"></i>
+                                    CMS Page
+                                </button>
                             </a>
                         </div>
                     </div>
-                    <div id="partialViewContainer">
-                        @RenderBody()
+                    <div class="pb-2">
+                        <div class="main_admin_menus_divs">
+                            <a class="admin-menu-link" href="/Admin/MissionAdmin">
+                                <button data="/Admin/MissionAdminTableData">
+                                    <i class="bi bi-bullseye"></i>
+                                    Mission
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="pb-2">
+                        <div class="main_admin_menus_divs">
+                            <a class="admin-menu-link" href="/Admin/MissionThemeAdmin" >
+                                <button>
+                                    <i class="bi bi-columns-gap"></i>
+                                    Mission Theme
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="pb-2">
+                        <div class="main_admin_menus_divs">
+                            <a class="admin-menu-link" href="/Admin/MissionSkillAdmin">
+                                <button>
+                                    <i class="bi bi-tools"></i>
+                                    Mission Skills
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="pb-2">
+                        <div class="main_admin_menus_divs">
+                            <a class="admin-menu-link" href="/Admin/MissionAppAdmin">
+                                <button>
+                                    <i class="bi bi-folder-fill"></i>
+                                    Mission Application
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="pb-2">
+                        <div class="main_admin_menus_divs">
+                            <a class="admin-menu-link" href="/Admin/StoryAdmin">
+                                <button>
+                                    <i class="bi bi-bookmark-star-fill"></i>
+                                    Story
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="pb-2">
+                        <div class="main_admin_menus_divs">
+                            <a class="admin-menu-link" href="/Admin/BannerAdmin">
+                                <button>
+                                    <i class="bi bi-menu-button"></i>
+                                    Banner Management
+                                </button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+            <div class="col-10 mt-3 admin_second_content">
+                <div class="admin_second_content_header">
+                    <div class="d-flex justify-content-between align-items-center justify-content-end ">
+                        <div>
+                            <label id="current-time"></label>
+                        </div>
+                        <a class="admin_logout" id="adminLogout">
+                            <i class="fa-solid fa-right-from-bracket" style="cursor:pointer;"></i>
+                        </a>
+                    </div>
+                </div>
+                <div id="partialViewContainer">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/js/AdminJS.js"></script>
-    </body>
-</html>
-
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/AdminJS.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/AdminJS.js"></script>
 </body>
 </html>
+

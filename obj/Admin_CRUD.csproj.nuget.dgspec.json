@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\important\\122\\Projects\\Admin_CRUD\\Admin_CRUD.csproj": {}
+    "D:\\important\\122\\Projects\\ASP.NET-Rajor\\Admin_CRUD.csproj": {}
   },
   "projects": {
-    "D:\\important\\122\\Projects\\Admin_CRUD\\Admin_CRUD.csproj": {
+    "D:\\important\\122\\Projects\\ASP.NET-Rajor\\Admin_CRUD.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\important\\122\\Projects\\Admin_CRUD\\Admin_CRUD.csproj",
+        "projectUniqueName": "D:\\important\\122\\Projects\\ASP.NET-Rajor\\Admin_CRUD.csproj",
         "projectName": "Admin_CRUD",
-        "projectPath": "D:\\important\\122\\Projects\\Admin_CRUD\\Admin_CRUD.csproj",
+        "projectPath": "D:\\important\\122\\Projects\\ASP.NET-Rajor\\Admin_CRUD.csproj",
         "packagesPath": "C:\\Users\\pca172\\.nuget\\packages\\",
-        "outputPath": "D:\\important\\122\\Projects\\Admin_CRUD\\obj\\",
+        "outputPath": "D:\\important\\122\\Projects\\ASP.NET-Rajor\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -52,6 +52,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.143, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.8, )"
@@ -61,6 +69,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.8, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
             }
           },
           "imports": [
@@ -126,6 +138,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.143, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.8, )"
@@ -135,6 +155,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.8, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
             }
           },
           "imports": [
@@ -201,6 +225,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.143, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.8, )"
@@ -210,6 +242,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.8, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
             }
           },
           "imports": [

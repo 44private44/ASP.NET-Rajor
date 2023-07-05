@@ -1,9 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Dapper;
+using Entities.AdminData;
+using Entities.DataModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Repositories.IRepositories;
+using System.Data;
 
 namespace Admin_CRUD.Controllers
 {
     public class AdminController : Controller
     {
+        private CiplatformContext _context;
+        private readonly IUserAdminRepository _userAdminRepository;
+        public AdminController(CiplatformContext context, IUserAdminRepository userAdminRepository )
+        {
+            _context = context;
+            _userAdminRepository = userAdminRepository;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -22,6 +36,34 @@ namespace Admin_CRUD.Controllers
             return PartialView("_UserAdmin");
         }
 
+        // User Table Data
+
+        public IActionResult UserAdminTableData(string searchText, int pageNo, int pSize)
+        {
+            try
+            {
+                if(searchText == null)
+                {
+                    searchText = "";
+                }
+                var results = _userAdminRepository.GetAllUserData(searchText, pageNo, pSize);
+                return PartialView("_UserAdminTableData", results);
+            }
+            catch (Exception ex)
+            {
+                // Return an error view or message
+                Console.WriteLine(ex.Message);
+                return View("Error");
+            }
+        }
+
+        // New User Add Data 
+
+        public IActionResult UserAddData()
+        {
+            return PartialView("_UserAddData");
+        }
+
         // Cms Admin Page
 
         public IActionResult CMSAdmin()
@@ -36,6 +78,12 @@ namespace Admin_CRUD.Controllers
             return PartialView("_MissionAdmin");
         }
 
+        // Mission Table Data
+
+        public IActionResult MissionAdminTableData()
+        {
+            return PartialView("_MissionAdminTableData");
+        }
         // MissionTheme Admin Page
 
         public IActionResult MissionThemeAdmin()

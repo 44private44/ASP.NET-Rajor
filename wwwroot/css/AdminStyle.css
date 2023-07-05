@@ -237,3 +237,36 @@
     .card_apply_button:hover {
         border-color: black;
     }
+
+/* ---------------------------------------------------------------  Pagination ----------------------------------------------- */
+
+.pagination_div {
+    padding: 0px 8.5rem 25px 8.5rem;
+    text-align: -webkit-center;
+}
+
+.pagination {
+    justify-content: center;
+}
+
+.page-item {
+    margin-right: 10px;
+}
+
+.page-link {
+    color: gray;
+    border: 1px solid rgb(149, 149, 149);
+    border-radius: 4px;
+}
+
+    .page-link:hover {
+        color: white;
+        background-color: #f88634;
+        border: 1px solid black;
+    }
+
+#page1_pagination a {
+    background-color: #f88634;
+    color: white;
+    border: none;
+}
