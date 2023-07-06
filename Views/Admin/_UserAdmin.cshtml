@@ -46,28 +46,6 @@
             </tbody>
         </table>
     </div>
-    <!-- Pagination -->
-    <div class="pagination_div pagination_admin_div" id="mission_check2">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item @(ViewBag.PageNumber == 1 ? "disabled" : "")">
-                    <a class="page-link" href="/Admin/UserAdmin?page=@(ViewBag.PageNumber-1)" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                @for (int i = 1; i <= ViewBag.TotalPages; i++)
-                {
-                    <li class="page-item @(i == ViewBag.PageNumber ? "active" : "")">
-                        <a class="page-link" href="/Admin/UserAdmin?page=@i">@i</a>
-                    </li>
-                }
-                <li class="page-item @(ViewBag.PageNumber == ViewBag.TotalPages ? "disabled" : "")">
-                    <a class="page-link" href="/Admin/UserAdmin?page=@(ViewBag.PageNumber+1)" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    
 </div>
 

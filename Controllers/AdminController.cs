@@ -12,7 +12,7 @@ namespace Admin_CRUD.Controllers
     {
         private CiplatformContext _context;
         private readonly IUserAdminRepository _userAdminRepository;
-        public AdminController(CiplatformContext context, IUserAdminRepository userAdminRepository )
+        public AdminController(CiplatformContext context, IUserAdminRepository userAdminRepository)
         {
             _context = context;
             _userAdminRepository = userAdminRepository;
@@ -42,7 +42,7 @@ namespace Admin_CRUD.Controllers
         {
             try
             {
-                if(searchText == null)
+                if (searchText == null)
                 {
                     searchText = "";
                 }
@@ -57,11 +57,32 @@ namespace Admin_CRUD.Controllers
             }
         }
 
+
         // New User Add Data 
 
+        [HttpGet]
         public IActionResult UserAddData()
         {
-            return PartialView("_UserAddData");
+            var model = new UserAdminViewModel();
+            model.Countries = _context.Countries.ToList();
+            return PartialView("_UserAddData", model);
+
+        }
+
+        // Submit method
+        [HttpPost]
+        public JsonResult UserFormDataSubmitMethod(UserAdminViewModel data)
+        {
+            return Json(new { success = true});
+        }
+        // get cities by country
+
+        public JsonResult GetCitiesByCountry(int countryId)
+        {
+            var cities = _context.Cities.Where(c => c.CountryId == countryId)
+                                         .Select(c => new { cityId = c.CityId, cityName = c.Name })
+                                         .ToList();
+            return Json(cities);
         }
 
         // Cms Admin Page

@@ -9,10 +9,6 @@ function updateTime() {
 updateTime(); // Call the function once to display the current time
 setInterval(updateTime, 1000); // Call the function every second using setInterval
 
-
-//------------------------------search-------------------------------------------
-
-
 //--------------------------------------------------------------------------------------------------------------
 // Partial view data for in Partial view
 $(document).ready(function () {
@@ -64,7 +60,7 @@ $(document).ready(function () {
             data: {
                 searchText: '',
                 pageNo: 1,
-                pSize : 8
+                pSize: 8
             },
             type: 'GET',
             success: function (data) {
@@ -78,8 +74,8 @@ $(document).ready(function () {
 });
 
 //----------------------------------------------------------------------------------------
-//  Add Data partial view 
 
+// Searching Set 
 function handleSearch(event, suburlAboutData) {
     var searchingText = event.target.value;
     var suburl = suburlAboutData;
@@ -100,6 +96,9 @@ function handleSearch(event, suburlAboutData) {
         }
     });
 }
+
+
+//  Add Data partial view 
 function addnewuseradminadd(url) {
 
     $.ajax({
@@ -115,3 +114,100 @@ function addnewuseradminadd(url) {
     });
 }
 
+// Passsword validate
+
+function validatePassword() {
+    var password = $("#userAdminprofilepassword").val();
+    if (password != "") {
+        $("#userAdminprofilepasswordLabel").removeClass("validatefield");
+        // 8 character validate
+        if (password.length < 8) {
+            $("#usernewpasswordAdminmatchAdmin").removeClass("matchpassworddiv");
+            return false;
+        }
+        $("#usernewpasswordAdminmatchAdmin").addClass("matchpassworddiv");
+        return false;
+    }
+    else {
+        $("#userAdminprofilepasswordLabel").addClass("validatefield");
+    }
+}
+
+// Password eye visible and disable
+
+function PasswordVisible() {
+    const passwordInput2 = document.getElementById("userAdminprofilepassword");
+    const eyeIcon2 = document.getElementById("eyeIcon2");
+
+    if (passwordInput2.type === "password") {
+        passwordInput2.type = "text";
+        eyeIcon2.classList.remove("fa-eye-slash");
+        eyeIcon2.classList.add("fa-eye");
+    } else {
+        passwordInput2.type = "password";
+        eyeIcon2.classList.remove("fa-eye");
+        eyeIcon2.classList.add("fa-eye-slash");
+    }
+}
+
+
+// get cities by country
+
+function countrychange() {
+    var countryId = $("#country-select5 option:selected").val();
+
+    $.ajax({
+        url: "/Admin/GetCitiesByCountry",
+        type: "GET",
+        data: { countryId: countryId },
+        success: function (response) {
+            var citySelect = $("#city-select5");
+            citySelect.empty();
+            var newOption = $('<option>', {
+                value: '0',
+                text: 'Select your city'
+            });
+            citySelect.append(newOption);
+            $.each(response, function (i, city) {
+                citySelect.append($('<option>', {
+                    value: city.cityId,
+                    text: city.cityName
+                }));
+            });
+        },
+        error: function (response) {
+            console.log(response);
+        }
+    });
+}
+
+//ADD user Submit 
+
+function UserAddSubmit() {
+    // Serialize the form data
+    var formData = $('.NewUserAddAdmindiv form').serialize();
+
+    $.ajax({
+        url: '/Admin/UserFormDataSubmitMethod',
+        type: 'POST',
+        data: formData,
+        success: function (response) {
+            console.log("sucess");
+            $('.NewUserAddAdmindiv').empty();
+            var searchText = '';
+            var pageNo = 1;
+            var pSize = 8;
+
+            // Load the partial view
+            $('.NewUserAddAdmindiv').load('/Admin/UserAdmin', function () {
+                // Partial view loaded, now load the table data
+                var tableUrl = '/Admin/UserAdminTableData?searchText=' + encodeURIComponent(searchText) + '&pageNo=' + pageNo + '&pSize=' + pSize;
+                $("#userTableBody").load(tableUrl);
+            });
+            
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.log("Error");
+        }
+    });
+}

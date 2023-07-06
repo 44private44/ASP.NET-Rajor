@@ -270,3 +270,25 @@
     color: white;
     border: none;
 }
+
+.NewUserAddAdmin .login_form {
+    padding: 10px 98px 10px 50px;
+    height: 80vh;
+    overflow: scroll;
+    width: 158vh;
+}
+
+.NewUserAddAdmin .inside_admin_user_title {
+    padding: 5px 98px 5px 50px !important;
+    margin: 0px;
+    position: sticky;
+}
+    .NewUserAddAdmin .content_title {
+        font-weight: 700 !important;
+    }
+.matchpassworddiv {
+    display: none;
+}
+.validatefield {
+    color: red;
+}

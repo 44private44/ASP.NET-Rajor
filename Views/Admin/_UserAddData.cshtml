@@ -1,8 +1,143 @@
-﻿@*
+﻿@using Entities.AdminData
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
-<p>
-   Soham Modi
-</p>
+@model UserAdminViewModel
+<div class="NewUserAddAdmin NewUserAddAdmindiv">
+    <div class="inside_admin_user_title mt-5">
+        <h3>Add User</h3>
+        <hr>
+    </div>
+
+    @using (Html.BeginForm(null,null, FormMethod.Post, new { @class = "login_form", id = "addUserAdminForm" }))
+    {
+        <!-- Basic Information -->
+        <label class="content_title">Basic Information</label>
+        <hr class="mb-4" />
+        <div class="row mb-4">
+            <div class="form-group col-6">
+                @Html.LabelFor(model => model.FirstName, new { @class = "mb-1", id = "userAdminvalidname" })
+                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", id = "userAdminprofilename", placeholder = "Enter your name" })
+            </div>
+            <div class="form-group col-6">
+                @Html.LabelFor(model => model.LastName, new { @class = "mb-1", id = "userAdminvalidsname" })
+                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", id = "userAdminprofilesurname", placeholder = "Enter your surname" })
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="form-group col-6">
+                @Html.LabelFor(model => model.Email, new { @class = "mb-1", id = "userAdminvalidemail" })
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "userAdminprofileemail", placeholder = "Enter User Email", required = "required", type = "email" })
+                @*@Html.Label("", new { @class = "mb-1 mt-1 matchpassworddiv validatefield", id = "userAdminValidateEmail" })*@
+            </div>
+            <div class="form-group col-6">
+                @Html.LabelFor(model => model.password, new { @class = "mb-1", id = "userAdminprofilepasswordLabel" })
+                <div class="input-group special_inputpassword_eye">
+                    @Html.PasswordFor(model => model.password, new { @class = "form-control", id = "userAdminprofilepassword", placeholder = "Enter Password", required = "required", onblur="validatePassword()"})
+                    <div class="input-group-append">
+                        <span class="input-group-text password_eye">
+                            <i id="eyeIcon2" class="fa fa-eye-slash" aria-hidden="true" onclick="PasswordVisible()"></i>
+                        </span>
+                    </div>
+                </div>
+                <label for="" class="mb-1 mt-1 matchpassworddiv validatefield" id="usernewpasswordAdminmatchAdmin"> Password must be atleast 8 characters !</label>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="form-group col-6">
+                @Html.LabelFor(model => model.EmpID, new { @class = "mb-1" })
+                @Html.TextBoxFor(model => model.EmpID, new { @class = "form-control", id = "userAdminprofileempid", placeholder = "Enter your employee id" })
+            </div>
+            <div class="form-group col-6">
+                @Html.LabelFor(model => model.Manager, new { @class = "mb-1" })
+                @Html.TextBoxFor(model => model.Manager, new { @class = "form-control", id = "userAdminprofilemanager", placeholder = "Enter your manager name" })
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="form-group col-6">
+                @Html.LabelFor(model => model.Title, new{ @class = "mb-1" })
+                @Html.TextBoxFor(model => model.Title, new { @class = "form-control", id = "userAdminprofiletitle", placeholder = "Enter title" })
+            </div>
+            <div class="form-group col-6">
+                @Html.LabelFor(model => model.Dept, new { @class = "mb-1" })
+                @Html.TextBoxFor(model => model.Dept, new { @class = "form-control", id = "userAdminprofiledept", placeholder = "Enter your department" })
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="form-group col">
+                @Html.LabelFor(model => model.ProfileText, new { @class = "mb-1", id = "userAdminvalidprofile" })
+                @Html.TextAreaFor(model => model.ProfileText, new { @class = "form-control", id = "userAdminprofiletext", placeholder = "Enter your details...", rows = "4" })
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="form-group col">
+                @Html.LabelFor(model => model.WhyIVolunteer, new { @class = "mb-1" })
+                @Html.TextAreaFor(model => model.WhyIVolunteer, new { @class = "form-control", id = "userAdminprofilewhyivol", placeholder = "Enter your Comments...", rows = "4" })
+            </div>
+        </div>
+
+        <!-- Address Information -->
+        <label class="content_title">Address Information</label>
+        <hr class="mb-4" />
+        <div class="row mb-5">
+            <div class="form-group col-6">
+                @Html.LabelFor(model => model.CityId, "Enter your city", new { @class = "mb-1" })
+                <select asp-for="CityId" class="form-select" aria-label="Default select example" id="city-select5">
+                    <option selected id="getuserAdmincity">Select your city</option>
+                </select>
+                @*@Html.DropDownListFor(model => model.CityId, new SelectList(Model.Cities, "Value", "Text"), "Select your city", new { @class = "form-select", id = "city-select5" })*@
+            </div>
+            <div class="form-group col-6">
+                @Html.LabelFor(model => model.CountryId, "Country *", new { @class = "mb-1", id = "addUserAdminCountry" })
+                <select asp-for="CountryId" class="form-select addUserAdminCountry" aria-label="Default select example" id="country-select5" onchange="countrychange()">
+                    <option selected id="getuserAdmincountry" value="">Select your country</option>
+                    @foreach (var usercountry in Model.Countries)
+                    {
+                        <option value="@usercountry.CountryId">
+                            @usercountry.Name
+                        </option>
+                    }
+                </select>
+                @*@Html.DropDownListFor(model => model.CountryId, new SelectList(Model.Countries, "Value", "Text"), "Select your country", new { @class = "form-select addUserAdminCountry", id = "country-select5" })*@
+            </div>
+        </div>
+        <!-- Professional Information -->
+        <label class="content_title">Professional Information</label>
+        <hr class="mb-4" />
+        <div class="row mb-4">
+            <div class="form-group col-6">
+                <!-- Active or not -->
+            @Html.LabelFor(model => model.Status, new { @class = "mb-1" })
+                <div class="d-flex user_status">
+                    <div class="form-check">
+                        @Html.RadioButtonFor(model => model.Status, "1", new { @class = "form-check-input", id = "active" })
+                        <label class="form-check-label" for="active">
+                            Active
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        @Html.RadioButtonFor(model => model.Status, "0", new { @class = "form-check-input", id = "inactive" })
+                        <label class="form-check-label" for="inactive">
+                            Inactive
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-6">
+                @Html.LabelFor(model => model.LinkedInUrl, new { @class = "mb-1" })
+                @Html.TextBoxFor(model => model.LinkedInUrl, new { @class = "form-control", id = "userprofileAdminlinkedin", placeholder = "Enter LinkedIn URL" })
+            </div>
+        </div>
+
+
+        <!-- Save -->
+        <div class="apply_button_card main_div_save">
+            <button class="card_apply_button" id="" onclick="UserAddSubmit()">
+                Submit
+            </button>
+        </div>
+    }
+
+</div>
