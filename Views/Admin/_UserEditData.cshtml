@@ -4,15 +4,15 @@
 *@
 @{
 }
+
 @model UserAdminViewModel
-<div class="NewUserAddAdmin NewUserAddAdmindiv">
+<div class="NewUserAddAdmin NewUserAddAdmindiv edituseradmindata">
     <div class="inside_admin_user_title mt-5">
-        <h3>Add User</h3>
+        <h3>Edit User</h3>
         <hr>
     </div>
 
-
-    @using (Html.BeginForm("", "", FormMethod.Post, new { @class = "login_form", id = "addUserAdminForm", onsubmit = "UserAddSubmit(); return false;" }))
+    @using (Html.BeginForm("", "", FormMethod.Post, new { @class = "login_form", id = "addUserAdminForm", onsubmit = "UserEditSubmit(); return false;" }))
     {
         <!-- Basic Information -->
         <label class="content_title">Basic Information</label>
@@ -30,13 +30,13 @@
         <div class="row mb-4">
             <div class="form-group col-6">
                 @Html.LabelFor(model => model.Email, new { @class = "mb-1", id = "userAdminvalidemail" })
-                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "userAdminprofileemail", placeholder = "Enter User Email", required = "required", type = "email" })
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "userAdminprofileemail", placeholder = "Enter User Email", required = "required", type = "email", disabled = "disabled"  })
                 @*@Html.Label("", new { @class = "mb-1 mt-1 matchpassworddiv validatefield", id = "userAdminValidateEmail" })*@
             </div>
             <div class="form-group col-6">
                 @Html.LabelFor(model => model.password, new { @class = "mb-1", id = "userAdminprofilepasswordLabel" })
                 <div class="input-group special_inputpassword_eye">
-                    @Html.PasswordFor(model => model.password, new { @class = "form-control", id = "userAdminprofilepassword", placeholder = "Enter Password", required = "required", onblur="validatePassword()"})
+                    @Html.TextBoxFor(model => model.password, new { @class = "form-control", id = "userAdminprofilepassword", placeholder = "Enter Password", required = "required", disabled = "disabled" })
                     <div class="input-group-append">
                         <span class="input-group-text password_eye">
                             <i id="eyeIcon2" class="fa fa-eye-slash" aria-hidden="true" onclick="PasswordVisible()"></i>
@@ -87,6 +87,12 @@
                 @Html.LabelFor(model => model.CityId, "Enter your city", new { @class = "mb-1" })
                 <select asp-for="CityId" class="form-select" aria-label="Default select example" id="city-select5">
                     <option selected id="getuserAdmincity">Select your city</option>
+                    @foreach (var usercity in Model.Cities)
+                    {
+                        <option value="@usercity.CityId">
+                            @usercity.Name
+                        </option>
+                    }
                 </select>
                 @*@Html.DropDownListFor(model => model.CityId, new SelectList(Model.Cities, "Value", "Text"), "Select your city", new { @class = "form-select", id = "city-select5" })*@
             </div>
@@ -132,6 +138,7 @@
             </div>
             @Html.HiddenFor(model => model.created_at)
         </div>
+
         <div class="d-flex">
             <!-- Cancle -->
         <div class="apply_button_card main_div_save">
@@ -149,3 +156,4 @@
     }
 
 </div>
+

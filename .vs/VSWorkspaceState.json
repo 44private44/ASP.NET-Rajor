@@ -3,7 +3,9 @@
     "",
     "\\Controllers",
     "\\Views",
-    "\\Views\\Admin"
+    "\\Views\\Admin",
+    "\\wwwroot",
+    "\\wwwroot\\js"
   ],
   "SelectedNode": "\\Admin_CRUD.sln",
   "PreviewInSolutionExplorer": false

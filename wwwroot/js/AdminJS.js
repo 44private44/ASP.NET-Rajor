@@ -204,10 +204,135 @@ function UserAddSubmit() {
                 var tableUrl = '/Admin/UserAdminTableData?searchText=' + encodeURIComponent(searchText) + '&pageNo=' + pageNo + '&pSize=' + pSize;
                 $("#userTableBody").load(tableUrl);
             });
-            
         },
         error: function (xhr, textStatus, errorThrown) {
             console.log("Error");
+            alert("Something going wrong");
+        }
+    });
+}
+
+// cancle 
+
+function AdduserCanclebtn() {
+    $('.NewUserAddAdmindiv').empty();
+    var searchText = '';
+    var pageNo = 1;
+    var pSize = 8;
+
+    // Load the partial view
+    $('.NewUserAddAdmindiv').load('/Admin/UserAdmin', function () {
+        // Partial view loaded, now load the table data
+        var tableUrl = '/Admin/UserAdminTableData?searchText=' + encodeURIComponent(searchText) + '&pageNo=' + pageNo + '&pSize=' + pSize;
+        $("#userTableBody").load(tableUrl);
+    });
+}
+
+// edit icon
+var gettinguserId;
+function UserEditDataBtn(datavalue) {
+    gettinguserId = datavalue.dataset.userid;
+
+    $.ajax({
+        url: '/Admin/UserEditData',
+        type: 'GET',
+        data: { userId: gettinguserId },
+        success: function (data) {
+            $('#userAdminMain').empty();
+            $('#userAdminMain').html(data);
+        },
+        error: function () {
+            // Handle the error case
+            console.log('Error retrieving user data.');
+        }
+    });
+}
+
+// Edit user Submit data
+function UserEditSubmit() {
+    // Serialize the form data
+    var formData = $('.edituseradmindata form').serialize();
+    formData += '&userId=' + gettinguserId;
+    $.ajax({
+        url: '/Admin/UserFormEditData',
+        type: 'POST',
+        data: formData,
+        success: function (response) {
+            console.log("sucess");
+            $('.edituseradmindata').empty();
+            var searchText = '';
+            var pageNo = 1;
+            var pSize = 8;
+
+            // Load the partial view
+            $('.edituseradmindata').load('/Admin/UserAdmin', function () {
+                // load the table data
+                var tableUrl = '/Admin/UserAdminTableData?searchText=' + encodeURIComponent(searchText) + '&pageNo=' + pageNo + '&pSize=' + pSize;
+                $("#userTableBody").load(tableUrl);
+            });
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.log("Error");
+            alert("Something going wrong");
+        }
+    });
+}
+
+// delete icon
+
+var gettinguserIdforDelete;
+function UserDeleteDataBtn(datavalue) {
+    gettinguserIdforDelete = datavalue.dataset.userid;
+
+    $.ajax({
+        url: '/Admin/UserDeleteData',
+        type: 'GET',
+        data: { userId: gettinguserIdforDelete },
+        success: function (data) {
+            console.log('success');
+            //$('#userAdminMain').empty();
+            //$('#userAdminMain').html(data);
+            $('#deletePartialContainer').css('display', 'block');
+            $('#deletePartialContainer').html(data);
+        },
+        error: function () {
+            // Handle the error case
+            console.log('Error retrieving user data.');
+        }
+    });
+}
+
+
+// cancle delete
+
+function deleteuserCanclebtn() {
+    $('#deletePartialContainer').css('display', 'none');
+}
+// Confirm Delete
+
+function UserDeleteConfirm() {
+    $.ajax({
+        url: '/Admin/UserDeleteConfirmData',
+        type: 'GET',
+        data: { userId: gettinguserIdforDelete },
+        success: function (data) {
+            $('#deletePartialContainer').css('display', 'none');
+           $('#userAdminMain').empty();
+
+            var searchText = '';
+            var pageNo = 1;
+            var pSize = 8;
+
+            // Load the partial view
+            $('#userAdminMain').load('/Admin/UserAdmin', function () {
+                // load the table data
+                var tableUrl = '/Admin/UserAdminTableData?searchText=' + encodeURIComponent(searchText) + '&pageNo=' + pageNo + '&pSize=' + pSize;
+                $("#userTableBody").load(tableUrl);
+            });
+        },
+        error: function () {
+            // Handle the error case
+            console.log('Error retrieving user data.');
         }
     });
 }

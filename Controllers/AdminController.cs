@@ -57,7 +57,6 @@ namespace Admin_CRUD.Controllers
             }
         }
 
-
         // New User Add Data 
 
         [HttpGet]
@@ -73,7 +72,22 @@ namespace Admin_CRUD.Controllers
         [HttpPost]
         public JsonResult UserFormDataSubmitMethod(UserAdminViewModel data)
         {
-            return Json(new { success = true});
+            if (data.created_at == null)
+            {
+                data.created_at = DateTime.Now; // Set CreatedAt to the current date and time
+            }
+
+            var result = _userAdminRepository.addnewuserdatatodb(data);
+            if (result == 1)
+            {
+                return Json(new { success = true });
+
+            }
+            else
+            {
+                return Json(new { success = true });
+
+            }
         }
         // get cities by country
 
@@ -84,6 +98,86 @@ namespace Admin_CRUD.Controllers
                                          .ToList();
             return Json(cities);
         }
+
+        // Edit User
+
+        [HttpGet]
+        public IActionResult UserEditData(long userId)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.UserId == userId);
+            if (user == null)
+            {
+                // Handle the case when the user is not found
+                return NotFound();
+            }
+
+            var model = new UserAdminViewModel
+            {
+                // Populate the properties of the view model with the retrieved user data
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                password = user.Password,
+                EmpID = user.EmployeeId,
+                Manager = user.Manager,
+                Title = user.Title,
+                Dept = user.Department,
+                ProfileText = user.ProfileText,
+                WhyIVolunteer = user.WhyIVolunteer,
+                CityId = user.CityId,
+                CountryId = user.CountryId,
+                Status = user.Status ?? 0,
+                LinkedInUrl = user.LinkedInUrl,
+                Cities = _context.Cities.Where(city => city.CountryId == user.CountryId).ToList(),
+                Countries = _context.Countries.ToList()
+            };
+
+            return PartialView("_UserEditData", model);
+        }
+
+        // Edit Form Submit 
+        public JsonResult UserFormEditData(UserAdminViewModel data)
+        {
+            if (data.UserID == 0)
+            {
+                return Json(new { error = true });
+            }
+
+            var result = _userAdminRepository.addedituserdatatodb(data);
+            if (result == 1)
+            {
+                return Json(new { success = true });
+            }
+            else
+            {
+                return Json(new { error = true });
+            }
+        }
+
+        // User delete 
+
+        public IActionResult UserDeleteData()
+        {
+            return PartialView("_UserDeleteData");
+        }
+
+        // Confirm delete
+
+        public JsonResult UserDeleteConfirmData(long userId)
+        {
+            var deletedata = _userAdminRepository.DeleteUserRecords(userId);
+
+            if (deletedata == true)
+            {
+                return Json(new { success = true });
+            }
+            else
+            {
+                return Json(new { error = true });
+            }
+
+        }
+
 
         // Cms Admin Page
 

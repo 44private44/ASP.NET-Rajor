@@ -8,7 +8,7 @@
 @model IEnumerable<UserAdminViewModel>
 
 @*  <td>jewb</td>
-  <td>jewb</td>*@
+    <td>jewb</td>*@
 
 @foreach (var user in Model)
 {
@@ -22,8 +22,8 @@
             @(user.Status == 1 ? "Active" : "Inactive")
         </td>
         <td>
-            <i class="fa-regular fa-pen-to-square UserEditAdminButton"  data-userid="@user.UserID"></i>
-            <i class="fa-solid fa-trash-can deleteihover UserDeleteAdminButton" data-userid="@user.UserID"></i>
+            <i class="fa-regular fa-pen-to-square UserEditAdminButton" data-userid="@user.UserID" onclick="UserEditDataBtn(this)"></i>
+            <i class="fa-solid fa-trash-can deleteihover UserDeleteAdminButton" data-userid="@user.UserID"  onclick="UserDeleteDataBtn(this)"></i>
         </td>
     </tr>
 }

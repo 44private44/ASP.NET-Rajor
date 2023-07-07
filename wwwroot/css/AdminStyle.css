@@ -283,12 +283,109 @@
     margin: 0px;
     position: sticky;
 }
-    .NewUserAddAdmin .content_title {
-        font-weight: 700 !important;
-    }
+
+.NewUserAddAdmin .content_title {
+    font-weight: 700 !important;
+}
+
 .matchpassworddiv {
     display: none;
 }
+
 .validatefield {
     color: red;
+}
+
+.main_div_save .newusercancleform {
+    margin-right: 15px;
+}
+
+/* Delete partial view*/
+
+.modeldeleteimage {
+    padding: 0px 50px;
+}
+
+    .modeldeleteimage button {
+        padding: 12px 16px;
+        border-color: red;
+        cursor: default;
+    }
+
+        .modeldeleteimage button i {
+            font-size: 25px;
+            vertical-align: middle;
+            color: red;
+        }
+
+.deletebuttondiv {
+    padding: 0px 90px;
+}
+
+    .deletebuttondiv button {
+        border: none !important;
+        border-radius: 12px !important;
+        background-color: #787878;
+        color: white;
+        font-weight: 600;
+    }
+
+        .deletebuttondiv button:hover {
+            background-color: #ff5050;
+        }
+
+.timesheet_table {
+    min-height: 550px;
+}
+
+.deleteihover:hover {
+    color: red !important;
+}
+
+.card_apply_button {
+    text-align: center;
+    border: 2px solid #F88634;
+    border-radius: 30px;
+    padding: 8px 25px;
+    color: #F88634;
+    background-color: transparent;
+}
+
+    .card_apply_button:hover {
+        border-color: black;
+    }
+
+.MainUserDeletePartialdiv {
+    margin: 4% 30% 0% 40%;
+    padding: 25px;
+    background-color: white;
+    border-radius: 21px;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.blur {
+    filter: blur(3px); 
+    pointer-events: none; 
+}
+
+#deletePartialContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1; 
+    display: none; 
 }
