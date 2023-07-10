@@ -12,10 +12,14 @@ namespace Admin_CRUD.Controllers
     {
         private CiplatformContext _context;
         private readonly IUserAdminRepository _userAdminRepository;
-        public AdminController(CiplatformContext context, IUserAdminRepository userAdminRepository)
+        private readonly IMissionAdminRepository _missionAdminRepository;
+        private readonly ICMSAdminRepository _cmsAdminRepository;
+        public AdminController(CiplatformContext context, IUserAdminRepository userAdminRepository, IMissionAdminRepository missionAdminRepository, ICMSAdminRepository cMSAdminRepository)
         {
             _context = context;
             _userAdminRepository = userAdminRepository;
+            _missionAdminRepository = missionAdminRepository;   
+            _cmsAdminRepository = cMSAdminRepository;   
         }
 
         public IActionResult Index()
@@ -161,7 +165,7 @@ namespace Admin_CRUD.Controllers
             return PartialView("_UserDeleteData");
         }
 
-        // Confirm delete
+        // Confirm user delete
 
         public JsonResult UserDeleteConfirmData(long userId)
         {
@@ -186,6 +190,119 @@ namespace Admin_CRUD.Controllers
             return PartialView("_CMSAdmin");
         }
 
+        // CMS Table Data
+
+        public IActionResult CMSAdminTableData(string searchText, int pageNo, int pSize)
+        {
+            try
+            {
+                if (searchText == null)
+                {
+                    searchText = "";
+                }
+                var results = _cmsAdminRepository.GetAllCMSData(searchText, pageNo, pSize);
+                return PartialView("_CMSAdminTableData", results);
+            }
+            catch (Exception ex)
+            {
+                // Return an error view or message
+                Console.WriteLine(ex.Message);
+                return View("Error");
+            }
+
+        }
+
+        // New CMS Add Data 
+
+        [HttpGet]
+        public IActionResult CMSAddData()
+        {
+            return PartialView("_CMSAddData");
+        }
+
+        // Submit method CMS
+        [HttpPost]
+        public JsonResult CMSFormDataSubmitMethod(CMSAdminViewModel data)
+        {
+            var result = _cmsAdminRepository.addnewcmsdatatodb(data);
+            if (result == 1)
+            {
+                return Json(new { success = true });
+
+            }
+            else
+            {
+                return Json(new { success = true });
+
+            }
+        }
+        // Edit CMS
+
+        [HttpGet]
+        public IActionResult CMSEditDate(long cmsId)
+        {
+            var cms = _context.CmsPages.FirstOrDefault(u => u.CmsPageId == cmsId);
+            if (cms == null)
+            {
+                // Handle the case when the user is not found
+                return NotFound();
+            }
+
+            var model = new CMSAdminViewModel
+            {
+                Title = cms.Title,
+                Slug = cms.Slug,  
+                Status = cms.Status,
+            };
+
+            return PartialView("_CMSEditDate", model);
+        }
+
+        // CMS Edit Form Submit 
+        public JsonResult CMSFormUpdateData(CMSAdminViewModel data)
+        {
+            if (data.CMSID == 0)
+            {
+                return Json(new { error = true });
+            }
+
+            var result = _cmsAdminRepository.EditCMSDataUpdate(data);
+            if (result == 1)
+            {
+                return Json(new { success = true });
+            }
+            else
+            {
+                return Json(new { error = true });
+            }
+        }
+
+
+        // CMS delete 
+
+        public IActionResult CMSDeleteData()
+        {
+            return PartialView("_CMSDeleteData");
+        }
+
+        // Confirm CMS delete
+
+        public JsonResult CmsDeleteConfirmData(long cmsId)
+        {
+            var deletedata = _cmsAdminRepository.DeleteCMSRecords(cmsId);
+
+            if (deletedata == true)
+            {
+                return Json(new { success = true });
+            }
+            else
+            {
+                return Json(new { error = true });
+            }
+
+        }
+
+
         // Mission Admin Page
 
         public IActionResult MissionAdmin()
@@ -195,10 +312,38 @@ namespace Admin_CRUD.Controllers
 
         // Mission Table Data
 
-        public IActionResult MissionAdminTableData()
+        public IActionResult MissionAdminTableData(string searchText, int pageNo, int pSize)
         {
-            return PartialView("_MissionAdminTableData");
+            try
+            {
+                if (searchText == null)
+                {
+                    searchText = "";
+                }
+                var results = _missionAdminRepository.GetAllMissionData(searchText, pageNo, pSize);
+                return PartialView("_MissionAdminTableData", results);
+            }
+            catch (Exception ex)
+            {
+                // Return an error view or message
+                Console.WriteLine(ex.Message);
+                return View("Error");
+            }
+
         }
+
+
+        // New mission Add Data 
+
+        [HttpGet]
+        public IActionResult MissionAddData()
+        {
+            var model = new MissionAdminViewModel();
+            model.Countries = _context.Countries.ToList();
+            return PartialView("_MissionAddData", model);
+
+        }
+
         // MissionTheme Admin Page
 
         public IActionResult MissionThemeAdmin()

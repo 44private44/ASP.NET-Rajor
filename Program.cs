@@ -12,6 +12,8 @@ builder.Services.AddDbContext<CiplatformContext>(options => options.UseSqlServer
 builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IUserAdminRepository, UserAdminRepository>();
+builder.Services.AddScoped<IMissionAdminRepository, MissionAdminRepository>();
+builder.Services.AddScoped<ICMSAdminRepository, CMSAdminRepository>();
 
 var app = builder.Build();
 

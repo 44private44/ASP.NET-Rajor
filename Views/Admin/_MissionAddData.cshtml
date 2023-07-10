@@ -1,0 +1,147 @@
+﻿@using Entities.AdminData
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model MissionAdminViewModel
+<div class="NewUserAddAdmin NewUserAddAdmindiv">
+    <div class="inside_admin_user_title mt-5">
+        <h3>Add Mission</h3>
+        <hr>
+    </div>
+    @using (Html.BeginForm("", "", FormMethod.Post, new { @class = "login_form", id = "addUserAdminForm", onsubmit = "UserAddSubmit(); return false;" }))
+    {
+        <div class="row mb-4">
+            <div class="form-group col-6">
+                @Html.LabelFor(model => model.title, new { @class = "mb-1", id = "addMissionTitleLabel" })
+                @Html.TextBoxFor(model => model.title, new { @class = "form-control", @placeholder = "Enter mission title" })
+            </div>
+            <div class="form-group col-6">
+                @Html.LabelFor(model => model.short_description, new { @class = "mb-1", id = "addMissionShortDescLabel" })
+                @Html.TextBoxFor(model => model.short_description, new { @class = "form-control", @placeholder = "Enter mission short description" })
+            </div>
+        </div>
+
+        <!-- Mission city and country -->
+        <div class="row mb-4 margin_div_set">
+            <div class="form-group col-6">
+                @Html.LabelFor(model => model.city_id, "Enter your city", new { @class = "mb-1" })
+                <select asp-for="city_id" class="form-select" aria-label="Default select example" id="city-select5">
+                    <option selected id="getuserAdmincity">Select your city</option>
+                </select>
+                @*@Html.LabelFor(model => model.city_id, "City *", new { @class = "mb-1", id = "addMissionCityLabel" })*@
+                @*@Html.DropDownListFor(model => model.city_id, new List<SelectListItem> { new SelectListItem { Text = "Select your City", Value = "0" } }, new { @class = "form-select addMissionCity", @id = "city-select5" })*@
+            </div>
+            <div class="form-group col-6">
+                @Html.LabelFor(model => model.country_id, "Country *", new { @class = "mb-1", id = "addUserAdminCountry" })
+                <select asp-for="country_id" class="form-select addUserAdminCountry" aria-label="Default select example" id="country-select5" onchange="countrychange()">
+                    <option selected id="getuserAdmincountry" value="">Select your country</option>
+                    @foreach (var usercountry in Model.Countries)
+                    {
+                        <option value="@usercountry.CountryId">
+                            @usercountry.Name
+                        </option>
+                    }
+                </select>
+                @*@Html.LabelFor(model => model.country_id, "Country *", new { @class = "mb-1", id = "addMissionCountryLabel" })*@
+                @*@Html.DropDownListFor(model => model.country_id, new SelectList(Model.Countries, "CountryId", "Name"), "Select your Country", new { @class = "form-select addMissionCountry", @id = "country-select5" })*@
+            </div>
+        </div>
+
+        <!-- Mission Organisation name and Organisation details -->
+        <div class="row mb-4 margin_div_set">
+            <div class="form-group col-12">
+                @Html.LabelFor(model => model.org_name, "Mission Organisation Name *", new { @class = "mb-1", id = "addMissionOrgLabel" })
+                @Html.TextBoxFor(model => model.org_name, new { @class = "form-control", @placeholder = "Enter mission organisation name" })
+            </div>
+        </div>
+
+        <!-- Mission type -->
+        <div class="row mb-5 mt-4 margin_div_set">
+            <div class="col-6">
+                <label class="mb-1">Mission Type</label>
+                <div>
+                    @Html.RadioButtonFor(model => model.mission_type, "Goal", new { id = "goal-option" })
+                    @Html.Label("goal-option", "Goal")
+                </div>
+                <div>
+                    @Html.RadioButtonFor(model => model.mission_type, "Time", new { id = "time-option" })
+                    @Html.Label("time-option", "Time")
+                </div>
+            </div>
+            <div class="form-group col-6 mission_time">
+                <label for="" class="mb-1" id=""> Mission registration deadline </label>
+                @Html.TextBoxFor(model => model.deadline, new { @class = "form-control", @placeholder = "Select Date", @type = "date", id = "addMissionDeadline" })
+            </div>
+        </div>
+
+        <!-- Mission goal text date and goal value -->
+        <div class="mission_goal mb-4 row margin_div_set">
+            <div class="form-group col-6">
+                @Html.LabelFor(model => model.goal_text, "Goal title *", new { @class = "mb-1", id = "addMissionGoalNameLabel" })
+                @Html.TextBoxFor(model => model.goal_text, new { @class = "form-control", @placeholder = "Enter goal heading" })
+            </div>
+            <div class="form-group col-6">
+                @Html.LabelFor(model => model.goal_value, "Goal Value *", new { @class = "mb-1", id = "addMissionGoalValueLabel" })
+                @Html.TextBoxFor(model => model.goal_value, new { @class = "form-control", @placeholder = "Enter value" })
+            </div>
+        </div>
+
+        <!-- Mission start date and end date -->
+        <div class="mb-4 row margin_div_set">
+            <div class="form-group col-6">
+                <label for="" class="mb-1" id=""> Mission start date </label>
+                @Html.TextBoxFor(model => model.start_date, new { @class = "form-control", @placeholder = "Select Date", @type = "date", id = "addMissionStartdate" })
+            </div>
+            <div class="form-group col-6">
+                <label for="" class="mb-1" id=""> Mission end date </label>
+                @Html.TextBoxFor(model => model.end_date, new { @class = "form-control", @placeholder = "Select Date", @type = "date", id = "addMissionEnddate" })
+            </div>
+        </div>
+
+        <div class="row mb-4 margin_div_set">
+            <div class="form-group col-6">
+                @Html.LabelFor(model => model.availability, "Mission Availability *", new { @class = "mb-1", id = "addMissionAvailabilityLabel" })
+                @Html.DropDownListFor(model => model.availability, new SelectList(new[] { "DAILY", "WEEK-END", "WEEKLY", "MONTHLY" }), "Select Availability", new { @class = "form-select", @id = "addMissionAvailability" })
+            </div>
+        </div>
+
+        <div class="row mb-5 mt-4 margin_div_set">
+            <div class="col-6">
+                <label class="mb-1">Mission Status</label>
+                <div class="form-check">
+                    @Html.RadioButtonFor(model => model.status, "1", new { id = "goal-option", @class = "form-check-input" })
+                    <label for="goal-option" class="form-check-label">Active</label>
+                </div>
+                <div class="form-check">
+                    @Html.RadioButtonFor(model => model.status, "0", new { id = "time-option", @class = "form-check-input" })
+                    <label for="time-option" class="form-check-label">Inactive</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upload Images -->
+        <div class="storyimageupload mb-5">
+            <label class="uploadstoryimages" for="file-upload" id="uploadvalidate">Upload your Photos</label>
+            <div class="upload-container">
+                <label for="file-upload" class="upload-label">
+                    <img src="~/Images/CI Platform Assets/drag-and-drop.png" alt="Choose file">
+                </label>
+                <input id="file-upload" type="file" name="files" multiple>
+            </div>
+
+            <div id="preview-container"></div>
+        </div>
+
+        <div class="apply_button_card main_div_save mb-1">
+            <a href="" id="submitsharestorydesign">
+                <button type="submit" class="card_apply_button" id="">
+                    Submit
+                </button>
+            </a>
+        </div>
+    }
+</div>
+
+

@@ -1,0 +1,22 @@
+﻿@using Entities.AdminData
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model IEnumerable<CMSAdminViewModel>
+
+@foreach (var CMS in Model)
+{
+    <tr>
+        <td>@CMS.Title</td>
+                <td class="status_@(CMS.Status == 1 ? "active" : "inactive")">
+            @(CMS.Status == 1 ? "Active" : "Inactive")
+        </td>
+        <td>
+            <i class="fa-regular fa-pen-to-square UserEditAdminButton" data-cmsid="@CMS.CMSID" onclick="CMSEditDataBtn(this)"></i>
+            <i class="fa-solid fa-trash-can deleteihover UserDeleteAdminButton" data-cmsid="@CMS.CMSID" onclick="CMSDeleteDataBtn(this)"></i>
+        </td>
+    </tr>
+}

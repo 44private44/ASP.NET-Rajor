@@ -317,7 +317,7 @@ function UserDeleteConfirm() {
         data: { userId: gettinguserIdforDelete },
         success: function (data) {
             $('#deletePartialContainer').css('display', 'none');
-           $('#userAdminMain').empty();
+            $('#userAdminMain').empty();
 
             var searchText = '';
             var pageNo = 1;
@@ -336,3 +336,191 @@ function UserDeleteConfirm() {
         }
     });
 }
+
+// mission add data
+function addnewmissionadminadd(url) {
+
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: function (data) {
+            $('#missionAdminMain').empty();
+            $('#missionAdminMain').html(data);
+        },
+        error: function () {
+            alert("Something going wrong !");
+        }
+    });
+}
+
+//CMS DATA
+//  Add CMS Data partial view 
+function addnewCmsadminadd(url) {
+
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: function (data) {
+            $('#AddCmsPartialContainer').css('display', 'block');
+            $('#AddCmsPartialContainer').html(data);
+        },
+        error: function () {
+            alert("Something going wrong !");
+        }
+    });
+}
+function addCmsCanclebtn() {
+    $('#AddCmsPartialContainer').css('display', 'none');
+    $('#userAdminMain').empty();
+
+    var searchText = '';
+    var pageNo = 1;
+    var pSize = 8;
+
+    // Load the partial view
+    $('#userAdminMain').load('/Admin/CMSAdmin', function () {
+        // load the table data
+        var tableUrl = '/Admin/CMSAdminTableData?searchText=' + encodeURIComponent(searchText) + '&pageNo=' + pageNo + '&pSize=' + pSize;
+        $("#userTableBody").load(tableUrl);
+    });
+}
+// CMS ADD SUBMIT
+function CmsAddSubmit() {
+
+    var formData = $('.addcmsdata form').serialize();
+
+    $.ajax({
+        url: '/Admin/CMSFormDataSubmitMethod',
+        type: 'POST',
+        data: formData,
+        success: function (response) {
+            $('#AddCmsPartialContainer').css('display', 'none');
+            $('#userAdminMain').empty();
+
+            var searchText = '';
+            var pageNo = 1;
+            var pSize = 8;
+
+            // Load the partial view
+            $('#userAdminMain').load('/Admin/CMSAdmin', function () {
+                // load the table data
+                var tableUrl = '/Admin/CMSAdminTableData?searchText=' + encodeURIComponent(searchText) + '&pageNo=' + pageNo + '&pSize=' + pSize;
+                $("#userTableBody").load(tableUrl);
+            });
+        },
+        error: function () {
+            // Handle the error case
+            console.log('Error retrieving user data.');
+        }
+    });
+}
+
+//CMS EDIT
+
+var gettingCmsId;
+function CMSEditDataBtn(datavalue) {
+    gettingCmsId = datavalue.dataset.cmsid;
+
+    $.ajax({
+        url: '/Admin/CMSEditDate',
+        type: 'GET',
+        data: { cmsId: gettingCmsId },
+        success: function (data) {
+            $('#AddCmsPartialContainer').css('display', 'block');
+            $('#AddCmsPartialContainer').html(data);
+        },
+        error: function () {
+            // Handle the error case
+            console.log('Error retrieving CMS data.');
+        }
+    });
+}
+
+// CMS EDIT SUBMIT
+function CmsEditSubmit() {
+
+    var formData = $('.editcmsdata form').serialize();
+    formData += '&CMSId=' + gettingCmsId;
+
+    $.ajax({
+        url: '/Admin/CMSFormUpdateData',
+        type: 'POST',
+        data: formData,
+        success: function (response) {
+            $('#AddCmsPartialContainer').css('display', 'none');
+            $('#userAdminMain').empty();
+
+            var searchText = '';
+            var pageNo = 1;
+            var pSize = 8;
+
+            // Load the partial view
+            $('#userAdminMain').load('/Admin/CMSAdmin', function () {
+                // load the table data
+                var tableUrl = '/Admin/CMSAdminTableData?searchText=' + encodeURIComponent(searchText) + '&pageNo=' + pageNo + '&pSize=' + pSize;
+                $("#userTableBody").load(tableUrl);
+            });
+        },
+        error: function () {
+            // Handle the error case
+            console.log('Error retrieving user data.');
+        }
+    });
+}
+
+// cms delete
+// delete icon
+
+var gettingcmsIdforDelete;
+function CMSDeleteDataBtn(datavalue) {
+    gettingcmsIdforDelete = datavalue.dataset.cmsid;
+
+    $.ajax({
+        url: '/Admin/CMSDeleteData',
+        type: 'GET',
+        data: { CMSId: gettingcmsIdforDelete },
+        success: function (data) {
+            $('#deletePartialContainer').css('display', 'block');
+            $('#deletePartialContainer').html(data);
+        },
+        error: function () {
+            alert("Something going wrong!!")
+        }
+    });
+}
+
+
+// cancle delete
+
+function deleteCmsCanclebtn() {
+    $('#deletePartialContainer').css('display', 'none');
+}
+// Confirm Delete
+
+function CMSDeleteConfirm() {
+    $.ajax({
+        url: '/Admin/CmsDeleteConfirmData',
+        type: 'GET',
+        data: { cmsId: gettingcmsIdforDelete },
+        success: function (data) {
+            $('#deletePartialContainer').css('display', 'none');
+            $('#userAdminMain').empty();
+
+            var searchText = '';
+            var pageNo = 1;
+            var pSize = 8;
+
+            // Load the partial view
+            $('#userAdminMain').load('/Admin/CMSAdmin', function () {
+                // load the table data
+                var tableUrl = '/Admin/CMSAdminTableData?searchText=' + encodeURIComponent(searchText) + '&pageNo=' + pageNo + '&pSize=' + pSize;
+                $("#userTableBody").load(tableUrl);
+            });
+        },
+        error: function () {
+            // Handle the error case
+            console.log('Error retrieving user data.');
+        }
+    });
+}
+
